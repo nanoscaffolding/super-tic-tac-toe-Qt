@@ -1,16 +1,18 @@
 #ifndef SUPERTICTACTOE_H
 #define SUPERTICTACTOE_H
 
-#include <QWidget>
-#include <QGridLayout>
-#include <QPushButton>
-#include <vector>
-#include <QGroupBox>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QComboBox>
-#include <stack>
+#include<QWidget>
+#include<QGridLayout>
+#include<QPushButton>
+#include<vector>
+#include<QGroupBox>
+#include<QLabel>
+#include<QVBoxLayout>
+#include<QHBoxLayout>
+#include<QComboBox>
+#include<stack>
+#include<QTimer>
+#include<QTime>
 
 class SuperTicTacToe : public QWidget {
     Q_OBJECT
@@ -26,7 +28,7 @@ private slots:
     void restartGame();
     void resignGame();
     void undoMove();
-    void changeBoardSize(int index); // Slot to change board size
+    void changeBoardSize(int index); //Slot to change board size
 
 private:
     QGridLayout *globalGridLayout;
@@ -34,8 +36,8 @@ private:
     QLabel *turnLabel;
     QPushButton *restartButton;
     QPushButton *resignButton;
-    QPushButton *undoButton;
-    QComboBox *boardSizeSelect; // Select button for board size
+    QPushButton *undoButton;    //Button to return t the previous move
+    QComboBox *boardSizeSelect; //Select button for board size
     QHBoxLayout *mainLayout;
     std::vector<std::vector<QGridLayout*>> localGridLayouts;
     std::vector<std::vector<std::vector<std::vector<QPushButton*>>>> boardButtons;
@@ -46,7 +48,7 @@ private:
     QGroupBox *activeLocalBoardFrame;
     int boardSize; // Current board size
 
-    struct Move {
+    struct Move{
         int localRow;
         int localCol;
         int globalRow;
@@ -54,12 +56,12 @@ private:
         int player;
         int nextLocalBoard;
     };
-    std::stack<Move> moveStack;
 
+    std::stack<Move> moveStack; //Used in undo sequence
 
     void createBoard();
     void updateTurnLabel();
-    void clearBoard(); // Helper function to clear the board
+    void clearBoard();
 };
 
 #endif // SUPERTICTACTOE_H
