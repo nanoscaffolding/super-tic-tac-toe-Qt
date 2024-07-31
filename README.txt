@@ -1,4 +1,3 @@
-Github link: https://github.com/nanoscaffolding/super-tic-tac-toe-Qt
 
 SuperTicTacToe
 
